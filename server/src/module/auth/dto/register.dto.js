@@ -8,6 +8,6 @@ class RegisterDto extends BaseDto {
         email: Joi.string().email().min(2).max(50).lowercase().required(),
         password: Joi.string()
             .min(8).max(50).required(),
-    })
+    }).required()
 }
 export default RegisterDto

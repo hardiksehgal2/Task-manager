@@ -11,8 +11,10 @@ const postTasks = async (req, res, next) => {
 
 const getTasks = async (req, res, next) => {
     try {
-        const tasks = await tasksService.getTasks(req.user);
-        ApiResponse.ok(res, "Tasks fetched successfully", tasks)
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = Math.min(50, Math.max(1, parseInt(req.query.limit) || 6));
+        const result = await tasksService.getTasks(req.user, { page, limit });
+        ApiResponse.ok(res, "Tasks fetched successfully", result)
     } catch (err) { next(err) }
 }
 
