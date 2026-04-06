@@ -12,8 +12,13 @@ const postTasks = async ({ title, description, status }, { id }) => {
     return task;
 }
 
-const getTasks = async ({ id }) => {
-    return await Task.find({ createdBy: id });
+const getTasks = async ({ id }, { page = 1, limit = 6 } = {}) => {
+    const skip = (page - 1) * limit;
+    const [tasks, total] = await Promise.all([
+        Task.find({ createdBy: id }).sort({ createdAt: -1 }).skip(skip).limit(limit),
+        Task.countDocuments({ createdBy: id }),
+    ]);
+    return { tasks, total, page, totalPages: Math.ceil(total / limit) };
 }
 
 const updateTask = async (taskId, body, { id }) => {

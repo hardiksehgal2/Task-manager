@@ -1,18 +1,24 @@
 // client\src\app\(pages)\dashboard\page.tsx
 "use client"
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getTasks, type TaskStatus } from "@/lib/api/tasks.api";
-import { Loader2 } from "lucide-react";
+import { getTasks, type TaskStatus, type PaginatedTasks } from "@/lib/api/tasks.api";
+import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import CreateTaskDialog from "@/components/tasks/CreateTaskDialog";
 import { ModeToggle } from "@/components/theme-toggle";
 import TaskCard from "@/components/tasks/TaskCard";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const COLUMNS: TaskStatus[] = ["To Do", "In Progress", "Done"];
+const LIMIT = 6;
+
 export default function Dashboard() {
-  const { data: tasks, isLoading, isError } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: getTasks,
+  const [page, setPage] = useState(1);
+
+  const { data, isLoading, isError } = useQuery<PaginatedTasks>({
+    queryKey: ["tasks", page],
+    queryFn: () => getTasks(page, LIMIT),
   });
 
   if (isLoading) {
@@ -31,8 +37,12 @@ export default function Dashboard() {
     );
   }
 
+  const tasks = data?.tasks ?? [];
+  const totalPages = data?.totalPages || 1;
+  const total = data?.total ?? 0;
+
   const grouped = COLUMNS.reduce<Record<TaskStatus, typeof tasks>>((acc, col) => {
-    acc[col] = tasks?.filter((t) => t.status === col) ?? [];
+    acc[col] = tasks.filter((t) => t.status === col);
     return acc;
   }, {} as Record<TaskStatus, typeof tasks>);
 
@@ -41,6 +51,7 @@ export default function Dashboard() {
     "In Progress": "bg-blue-500",
     "Done": "bg-green-500",
   };
+
   return (
     <div className="p-6 bg-white dark:bg-black min-h-screen font-body antialiased">
       <div className="flex flex-col gap-6">
@@ -49,7 +60,7 @@ export default function Dashboard() {
           <div className="space-y-2">
             <h1 className="font-headline text-3xl md:text-4xl lg:text-5xl font-extrabold">My Tasks</h1>
             <p className="font-body text-sm text-muted-foreground mt-0.5">
-              {tasks?.length ?? 0} total task{tasks?.length !== 1 ? "s" : ""}
+              {total} total task{total !== 1 ? "s" : ""}
             </p>
           </div>
           <div className="space-x-4">
@@ -85,6 +96,31 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-3 pt-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setPage((p) => p - 1)}
+              disabled={page === 1}
+            >
+              <ChevronLeft className="size-4" />
+            </Button>
+            <span className="font-body text-sm text-muted-foreground">
+              Page {page} of {totalPages}
+            </span>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setPage((p) => p + 1)}
+              disabled={page === totalPages}
+            >
+              <ChevronRight className="size-4" />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

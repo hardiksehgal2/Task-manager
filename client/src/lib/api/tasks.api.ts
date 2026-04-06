@@ -30,8 +30,17 @@ export const createTask = async (payload: CreateTaskPayload): Promise<Task> => {
   return data.data;
 };
 
-export const getTasks = async (): Promise<Task[]> => {
-  const { data } = await axiosInstance.get(ENDPOINTS.TASKS.BASE);
+export interface PaginatedTasks {
+  tasks: Task[];
+  total: number;
+  page: number;
+  totalPages: number;
+}
+
+export const getTasks = async (page = 1, limit = 6): Promise<PaginatedTasks> => {
+  const { data } = await axiosInstance.get(ENDPOINTS.TASKS.BASE, {
+    params: { page, limit },
+  });
   return data.data;
 };
 

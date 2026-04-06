@@ -57,8 +57,8 @@ export default function CreateTaskDialog() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
-        <Plus className="mr-1 size-4" />
+      <Button onClick={() => setOpen(true)} className="bg-blue-700">
+        <Plus className="mr-1 size-4 " />
         New Task
       </Button>
 
@@ -116,7 +116,7 @@ export default function CreateTaskDialog() {
               <Button type="button" variant="outline" onClick={() => setOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={mutation.isPending}>
+              <Button type="submit" disabled={mutation.isPending} className="bg-blue-700">
                 {mutation.isPending ? "Creating..." : "Create Task"}
               </Button>
             </DialogFooter>
