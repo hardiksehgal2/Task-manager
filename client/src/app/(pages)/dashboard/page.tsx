@@ -7,6 +7,7 @@ import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import CreateTaskDialog from "@/components/tasks/CreateTaskDialog";
 import { ModeToggle } from "@/components/theme-toggle";
 import TaskCard from "@/components/tasks/TaskCard";
+import LogoutButton from "@/components/auth/LogoutButton";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -63,9 +64,10 @@ export default function Dashboard() {
               {total} total task{total !== 1 ? "s" : ""}
             </p>
           </div>
-          <div className="space-x-4">
+          <div className="flex items-center gap-3">
             <CreateTaskDialog />
             <ModeToggle />
+            <LogoutButton />
           </div>
         </div>
 
