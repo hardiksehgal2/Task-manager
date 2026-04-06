@@ -37,11 +37,7 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
 
   return (
     <>
-      <div className="mb-12">
-        <span className="text-2xl font-extrabold tracking-tight text-primary">
-          Mindful Architect
-        </span>
-      </div>
+      
 
       <div className="max-w-md w-full">
         <h1 className="text-5xl font-extrabold text-on-surface mb-3 tracking-tight">
@@ -137,7 +133,7 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
 
           {/* Submit */}
           <button
-            className="w-full py-4 px-6 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-bold text-lg shadow-xl shadow-primary/10 hover:shadow-primary/20 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full py-4 px-6 rounded-xl bg-blue-700 from-primary to-primary-container text-white font-bold text-lg shadow-xl shadow-primary/10 hover:shadow-primary/20 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
             type="submit"
             disabled={loading}
           >
@@ -161,7 +157,7 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
           Already have an account?{" "}
           <button
             type="button"
-            className="text-primary font-bold hover:underline ml-1"
+            className="text-green-700  font-bold hover:underline ml-1"
             onClick={onSwitchToLogin}
           >
             Sign In
@@ -171,7 +167,7 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
 
       <div className="mt-auto py-8">
         <p className="text-[10px] uppercase tracking-widest text-outline font-bold">
-          © 2024 Mindful Architect. Built for clarity.
+          © 2026 Mindful Architect. Built for clarity.
         </p>
       </div>
     </>

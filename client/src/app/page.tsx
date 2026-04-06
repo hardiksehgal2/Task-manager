@@ -5,9 +5,8 @@ import Image from "next/image";
 export default function Home() {
   const router = useRouter();
   return (
-    <div className="bg-background text-on-background font-body antialiased">
-      <main>
-        <section className="relative min-h-screen flex items-center px-8 overflow-hidden">
+    <div className="bg-white text-on-background font-body antialiased">
+        <section className="bg-white relative min-h-screen flex items-center px-8 overflow-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
             <div className="lg:col-span-7 z-10">
               <div className="mb-6 flex items-center gap-2">
@@ -15,7 +14,7 @@ export default function Home() {
               </div>
               <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold text-on-surface leading-[1.1] mb-8 tracking-tight">
                 Structure Your Day, <br />
-                <span className="bg-linear-to-r from-primary to-primary-container bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-primary to-primary-container bg-clip-text text-blue-700">
                   Achieve Your Best
                 </span>
               </h1>
@@ -27,7 +26,7 @@ export default function Home() {
                 <button
                   onClick={() => router.push("/auth")}
 
-                  className="bg-linear-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-[0.98] cursor-pointer">
+                  className="bg-blue-700 text-on-primary px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-[0.98] cursor-pointer">
                   Get Started Free
                 </button>
 
@@ -47,18 +46,18 @@ export default function Home() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] glass-effect bg-white/40 p-8 rounded-xl border border-white/30 shadow-2xl">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center">
-                      <span className="material-symbols-outlined text-primary">architecture</span>
+                      <span className="material-symbols-outlined text-black">architecture</span>
                     </div>
                     <div>
-                      <p className="font-headline font-bold text-on-surface">Daily Blueprint</p>
+                      <p className="font-headline font-bold textblack">Daily Blueprint</p>
                       <p className="text-xs text-on-surface-variant">Personal Deep Work Session</p>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                      <div className="h-full w-2/3 bg-primary rounded-full" />
+                      <div className="h-full w-2/3 bg-blue-700 rounded-full" />
                     </div>
-                    <div className="flex justify-between text-xs font-medium text-on-surface-variant">
+                    <div className="flex justify-between text-xs font-medium text-blue-700">
                       <span>Completion Progress</span>
                       <span>67%</span>
                     </div>
@@ -83,7 +82,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-[0_16px_32px_rgba(0,60,157,0.06)] flex flex-col h-full">
                 <div className="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined text-primary text-3xl">edit_note</span>
+                  <span className="material-symbols-outlined text-3xl text-black">edit_note</span>
                 </div>
                 <h3 className="font-headline text-2xl font-bold text-on-surface mb-4">Effortless Management</h3>
                 <p className="text-on-surface-variant leading-relaxed mb-8 flex-grow text-sm md:text-base">
@@ -92,7 +91,7 @@ export default function Home() {
                 </p>
                 <div className="h-1 w-12 bg-primary/20 rounded-full group-hover:w-full transition-all duration-500" />
               </div>
-              <div className="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-[0_16px_32px_rgba(0,60,157,0.06)] flex flex-col h-full">
+              <div className="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-red-500 flex flex-col h-full">
                 <div className="w-14 h-14 bg-secondary-fixed rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined text-on-secondary-fixed-variant text-3xl">
                     priority_high
@@ -105,7 +104,7 @@ export default function Home() {
                 </p>
                 <div className="h-1 w-12 bg-secondary/20 rounded-full group-hover:w-full transition-all duration-500" />
               </div>
-              <div className="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-[0_16px_32px_rgba(0,60,157,0.06)] flex flex-col h-full">
+              <div className="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-yellow-800 flex flex-col h-full">
                 <div className="w-14 h-14 bg-tertiary-fixed rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined text-on-tertiary-fixed-variant text-3xl">
                     query_stats
@@ -123,18 +122,18 @@ export default function Home() {
         </section>
 
         <section className="py-24 px-8">
-          <div className="max-w-5xl mx-auto bg-primary rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-br from-primary to-primary-container opacity-50" />
+          <div className="max-w-5xl bg-blue-700 mx-auto  rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-blue-700 from-primary to-primary-container opacity-50" />
             <div className="relative z-10">
               <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-primary mb-6">
                 Ready to design your day?
               </h2>
-              <p className="text-on-primary-container text-lg mb-10 max-w-xl mx-auto opacity-90">
+              <p className="text-white text-lg mb-10 max-w-xl mx-auto opacity-90">
                 Join thousands of individuals who have switched to a more mindful and effective way of managing their
                 personal productivity.
               </p>
               <button
-                className="bg-white text-primary px-10 py-4 rounded-xl font-bold text-xl hover:bg-inverse-on-surface transition-colors active:scale-95 shadow-xl cursor-pointer"
+                className="bg-white text-blue-700 px-10 py-4 rounded-xl font-bold text-xl hover:bg-inverse-on-surface transition-colors active:scale-95 shadow-xl cursor-pointer"
                 onClick={() => router.push("/auth")}
               >
                 Get Started
@@ -144,7 +143,6 @@ export default function Home() {
             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
           </div>
         </section>
-      </main>
 
       <footer className="w-full py-12 px-8 mt-auto bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
