@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import Cookies from "js-cookie";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
@@ -8,14 +9,11 @@ const axiosInstance: AxiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
 });
 
-// Request interceptor — attach access token
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const token = Cookies.get("accessToken");
 
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -26,7 +24,6 @@ axiosInstance.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error)
 );
 
-// Response interceptor — handle token refresh on 401
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: AxiosError) => {
@@ -37,23 +34,27 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
+      const refreshToken = Cookies.get("refreshToken");
+
       try {
         const { data } = await axios.post(
           `${BASE_URL}/api/auth/refresh`,
-          {},
-          { withCredentials: true }
+          { refreshToken }
         );
 
-        const newToken: string = data?.data?.accessToken;
+        const newAccessToken: string = data?.data?.accessToken;
+        const newRefreshToken: string = data?.data?.refreshToken;
 
-        if (newToken) {
-          localStorage.setItem("accessToken", newToken);
+        if (newAccessToken) {
+          Cookies.set("accessToken", newAccessToken, { expires: 1 / 96 }); // 15 min
+          Cookies.set("refreshToken", newRefreshToken, { expires: 7 });
           originalRequest.headers = originalRequest.headers ?? {};
-          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return axiosInstance(originalRequest);
         }
       } catch {
-        localStorage.removeItem("accessToken");
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
         if (typeof window !== "undefined") {
           window.location.href = "/auth";
         }

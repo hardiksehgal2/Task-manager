@@ -1,8 +1,9 @@
 "use client"
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="bg-background text-on-background font-body antialiased">
       <main>
@@ -12,23 +13,24 @@ export default function Home() {
               <div className="mb-6 flex items-center gap-2">
                 <span className="text-xl font-bold tracking-tight text-slate-900">Mindful Architect</span>
               </div>
-              <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-extrabold text-on-surface leading-[1.1] mb-8 tracking-tight">
+              <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold text-on-surface leading-[1.1] mb-8 tracking-tight">
                 Structure Your Day, <br />
-                <span className="bg-gradient-to-r from-primary to-primary-container bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-primary to-primary-container bg-clip-text text-transparent">
                   Achieve Your Best
                 </span>
               </h1>
-              <p className="text-on-surface-variant text-lg md:text-xl max-w-xl mb-12 leading-relaxed">
+              <p className="text-on-surface-variant text-md md:text-lg max-w-lg mb-12 leading-relaxed">
                 A streamlined task manager designed for personal peak performance. Create, prioritize, and track your
                 progress with a workspace that honors your focus.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-[0.98]">
+                <button
+                  onClick={() => router.push("/auth")}
+
+                  className="bg-linear-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-[0.98] cursor-pointer">
                   Get Started Free
                 </button>
-                <button className="border-2 border-outline-variant/20 text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-container-low transition-colors">
-                  Watch Demo
-                </button>
+
               </div>
             </div>
             <div className="lg:col-span-5 relative">
@@ -41,7 +43,7 @@ export default function Home() {
                   className="object-cover mix-blend-overlay opacity-60"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-tr from-primary/10 to-transparent" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] glass-effect bg-white/40 p-8 rounded-xl border border-white/30 shadow-2xl">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center">
@@ -122,7 +124,7 @@ export default function Home() {
 
         <section className="py-24 px-8">
           <div className="max-w-5xl mx-auto bg-primary rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-container opacity-50" />
+            <div className="absolute inset-0 bg-linear-to-br from-primary to-primary-container opacity-50" />
             <div className="relative z-10">
               <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-primary mb-6">
                 Ready to design your day?
@@ -131,9 +133,9 @@ export default function Home() {
                 Join thousands of individuals who have switched to a more mindful and effective way of managing their
                 personal productivity.
               </p>
-              <button 
-              className="bg-white text-primary px-10 py-4 rounded-xl font-bold text-xl hover:bg-inverse-on-surface transition-colors active:scale-95 shadow-xl"
-              // onClick={}
+              <button
+                className="bg-white text-primary px-10 py-4 rounded-xl font-bold text-xl hover:bg-inverse-on-surface transition-colors active:scale-95 shadow-xl cursor-pointer"
+                onClick={() => router.push("/auth")}
               >
                 Get Started
               </button>
@@ -148,7 +150,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <span className="font-headline font-bold text-slate-900 text-lg">Mindful Architect</span>
-            <span className="text-xs text-slate-500">© 2024 Mindful Architect. Built for clarity.</span>
+            <span className="text-xs text-slate-500">© 2026 Mindful Architect. Built for clarity.</span>
           </div>
           <div className="flex gap-6 items-center">
             <a className="text-xs text-slate-500 hover:text-slate-900 transition-colors" href="#">

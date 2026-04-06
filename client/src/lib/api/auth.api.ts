@@ -20,10 +20,11 @@ export interface AuthUser {
 
 export interface AuthResponse {
   accessToken: string;
+  refreshToken: string;
   user: AuthUser;
 }
 
-export const register = async (payload: RegisterPayload): Promise<AuthResponse> => {
+export const register = async (payload: RegisterPayload): Promise<AuthUser> => {
   const { data } = await axiosInstance.post(ENDPOINTS.AUTH.REGISTER, payload);
   return data.data;
 };

@@ -17,7 +17,6 @@ export interface CreateTaskPayload {
   title: string;
   description: string;
   status: TaskStatus;
-  createdBy: string;
 }
 
 export interface UpdateTaskPayload {

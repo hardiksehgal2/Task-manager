@@ -9,8 +9,7 @@ class TaskDto extends BaseDTO {
         status: Joi.string()
             .valid('To Do', 'In Progress', 'Done')
             .required(),
-        createdBy: Joi.string().required()
-    })
+    }).required()
 }
 
 export default TaskDto;
