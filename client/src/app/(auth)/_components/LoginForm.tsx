@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
@@ -24,15 +25,12 @@ const LoginForm = ({ onSwitchToSignup }: LoginFormProps) => {
     setLoading(true);
     try {
       const { accessToken, refreshToken } = await login(form);
-      Cookies.set("accessToken", accessToken, { expires: 1 / 96 }); // ~15 min
-      Cookies.set("refreshToken", refreshToken, { expires: 7 }); // 7 days
+      Cookies.set("accessToken", accessToken, { expires: 1 / 96 }); 
+      Cookies.set("refreshToken", refreshToken, { expires: 7 }); 
       toast.success("Welcome back! Redirecting to your workspace...");
       router.push("/dashboard");
-    } catch (err: unknown) {
-      const message =
-        (err as { response?: { data?: { message?: string } } })?.response?.data
-          ?.message ?? "Login failed. Please check your credentials.";
-      toast.error(message);
+    } catch (err: any) {
+      toast.error(err ?? "Login failed. Please check your credentials.");
     } finally {
       setLoading(false);
     }
@@ -40,8 +38,6 @@ const LoginForm = ({ onSwitchToSignup }: LoginFormProps) => {
 
   return (
     <>
-    
-
       <div className="max-w-md w-full ">
         <h1 className="text-5xl font-extrabold text-black mb-3 tracking-tight ">
           Welcome back
@@ -88,7 +84,7 @@ const LoginForm = ({ onSwitchToSignup }: LoginFormProps) => {
               >
                 Password
               </label>
-             
+
             </div>
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -130,7 +126,7 @@ const LoginForm = ({ onSwitchToSignup }: LoginFormProps) => {
           </button>
         </form>
 
-       
+
 
         {/* Switch to Signup */}
         <p className="mt-10 text-center text-black font-medium">

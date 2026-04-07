@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import React, { useState } from "react";
 import { toast } from "sonner";
 import { register } from "@/lib/api/auth.api";
@@ -25,11 +25,9 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
         duration: 5000,
       });
       onSwitchToLogin();
-    } catch (err: unknown) {
-      const message =
-        (err as { response?: { data?: { message?: string } } })?.response?.data
-          ?.message ?? "Registration failed. Please try again.";
-      toast.error(message);
+    } catch (err: any) {
+     
+      toast.error(err ?? "Registration failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -37,8 +35,6 @@ const SignupForm = ({ onSwitchToLogin }: SignupFormProps) => {
 
   return (
     <>
-      
-
       <div className="max-w-md w-full">
         <h1 className="text-5xl font-extrabold text-on-surface mb-3 tracking-tight">
           Create account

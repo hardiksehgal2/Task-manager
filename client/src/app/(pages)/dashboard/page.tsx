@@ -100,7 +100,7 @@ export default function Dashboard() {
         </div>
 
         {/* Pagination */}
-        {totalPages > 1 && (
+      
           <div className="flex items-center justify-center gap-3 pt-2">
             <Button
               variant="outline"
@@ -122,7 +122,6 @@ export default function Dashboard() {
               <ChevronRight className="size-4" />
             </Button>
           </div>
-        )}
       </div>
     </div>
   );
