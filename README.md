@@ -1,6 +1,12 @@
 # Task Manager
 
-A full-stack Kanban-style task management application built with Next.js and Express. Users can register, log in, and manage their personal tasks across three status columns — all behind a secure JWT authentication system with automatic token refresh.
+A full-stack Kanban-style task management application built with Next.js and Express.
+
+**Live Demo:**
+- Frontend: https://task-manager-phi-green.vercel.app/
+- Backend API: https://task-manager-f1mf.onrender.com
+
+> The backend runs on Render's free tier. The first request after inactivity may take up to 50 seconds to wake the server — subsequent requests will be fast. Users can register, log in, and manage their personal tasks across three status columns — all behind a secure JWT authentication system with automatic token refresh.
 
 ---
 
@@ -39,7 +45,7 @@ A full-stack Kanban-style task management application built with Next.js and Exp
 | UI Components | shadcn/ui + Radix UI primitives |
 | Server State | TanStack Query (React Query) v5 |
 | HTTP Client | Axios with interceptors |
-| Forms | React Hook Form |
+| Forms | React controlled components (useState) |
 | Cookies | js-cookie |
 | Icons | Lucide React |
 
